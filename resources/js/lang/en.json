@@ -33,7 +33,8 @@
   "library": "Library",
   "book_status": "Book availability",
   "condition": "Condition",
-  "your_info": "Your Info",
+  "settings_yourInfo": "Your preferred meeting point",
+  "settings_beSafe": "Always try to be safe when meeting people online.",
   "info_updated": "Your info has been updated!",
   "update": "Update",
   "your_password": "Your Password",
@@ -48,6 +49,11 @@
   "failed_to_verify_email": "Failed to verify email.",
   "verify_email_address": "We sent you an email with an the verification link.",
 
+  "about": "About",
+  "privacyPolicy": "Privacy Policy",
+  "terms": "Terms and Condition",
+  "safeguarding": "Safeguarding",
+
   "search": "Search",
   "use_current_location": "Use current location",
   "continue-with-google": "Continue with google",
@@ -55,23 +61,37 @@
   "continue-with-facebook": "Continue with facebook",
 
   "signin-title": "Login to your account",
-  "signin-description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  "signin-description": "Sign in, using your preferred method, or quickly create an account.",
+
 
   "register_title": "Create your account",
+  "register_description": "Join the community by using one of the method below.",
   "register_name_placeholder": "John Smith",
   "register_email_placeholder": "john@smith.com",
   "register_password_placeholder": "***********",
   "register_cta": "Signup",
 
-  "welcomeSearch-title": "Search for a book",
-  "welcomeSearch-paragraph": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+  "welcomeSearch-title": "Books Search",
+  "welcomeSearch-paragraph": "Find books from a place near you in few clicks, and its totally free!",
 
-  "welcomeAdd-title": "Add a book",
-  "welcomeAdd-paragraph": "This is a short paragraph about how to add a book!",
+  "welcomeHow-title": "How it works",
+  "welcomeHow-subtitle": "Finding a book to borrow has never been easier.",
+  "welcomeHow-step1": "Search for a specific book, or just browse available books near you",
+  "welcomeHow-step2": "Select a book from the list of available titles near you",
+  "welcomeHow-step3": "Choose a date and time that suits you and send your request",
+  "welcomeHow-step4": "Pick up your book, after receiving confirmation of your request",
+
+  "welcomeAdd-title": "Add your books",
+  "welcomeAdd-subheading": "Loan or Give away your books",
+  "welcomeAdd-paragraph": "Be part of the community and quickly add your books to our selection to give them a second life. Fill the form below, or watch the video on the sidebar for more information",
   "welcomeAdd-cta": "Add a book",
 
   "welcomeJoin-title": "Join the community",
-  "welcomeJoin-paragraph": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
+  "welcomeJoin-paragraph": "Stay up to speed, with BooksBank News, features announcement, and carefully selected offers.",
+
+  "welcomeAbout-title": "About Booksbank",
+  "welcomeAbout-paragraph1": "Booksbank is a community driven project, aimed at allowing everyone to be able to enjoy a nice read, by borrowing books that would otherwise sit on a shelf collecting dust.",
+  "welcomeAbout-paragraph2": "The heart of booksbank it's YOU! This project would not be possible if it wasn't for the thousands of community members who are happy to lend their books.",
 
   "bookshelfAdd-title": "Add a book",
   "bookshelfAdd-paragraph": "Give your book a second life, by simply adding them to your virtual library following 3 easy steps.",
@@ -79,21 +99,40 @@
   "bookshelfAdd-steps-step1-description": "Search out database with millions of books available",
   "bookshelfAdd-steps-step2-title": "Set it's condition",
   "bookshelfAdd-steps-step2-description": "Provide some quick details for users to know",
-  "bookshelfAdd-steps-step3-title": "Review and Finish",
-  "bookshelfAdd-steps-step3-description": "Review your information and add make the book available",
-  
-  "bookshelfAdd-step1-search-label": "Enter Book ISBN or Title:",
-
+  "bookshelfAdd-step1-search-label": "Enter Book Title and/or author",
   "bookshelfAdd-step2-title": "Set it's condition",
   "bookshelfAdd-step2-description": "Select the condition that best describe our book",
+  "bookshelfAdd-step3-title": "Select what do you want to do with your book",
+  "bookshelfAdd-how-to-add-heading": "How to add your Books",
+  "bookshelfAdd-how-to-step1": "Setup the location of your book (just on the first book)",
+  "bookshelfAdd-how-to-step2": "Search your book by its title and/or author",
+  "bookshelfAdd-how-to-step3": "Select the condition that best describe our book",
+  "bookshelfAdd-how-to-step4": "Select what do you want to do with your book",
 
-  "bookshelfAdd-step3-title": "Review time",
-  "bookshelfAdd-step3-description": "Review the following information before adding your book",
+  "bookshelfAddNoBookshelfBanner-title": "Bookshelf registration required!",
+  "bookshelfAddNoBookshelfBanner-paragraph": "You need to set a location for your books!<br/>See the following video for info or just click the button below to get started! It is super easy!",
+  "bookshelfAddNoBookshelfBanner-button": "Set book location",
+
+  "bookshelfAddBookshelf-heading": "Set books location (needed for search distance)",
+  "bookshelfAddBookshelf-address": "First line of address",
+  "bookshelfAddBookshelf-postcode": "Postcode",
+  
+  "bookshelfAll-title": "Bookshelf info",
+  "bookshelfAll-BooksYouAreReading": "The books you are reading",
+  "bookshelfAll-BookYouOwn": "The books you own",
+  "bookshelfInfo-title": "Bookshelf requests",
 
   "bookshelfSettings-timeslot-title": "Choose your preferred time for the book to be picked up",
 
+  "libraryBorrow-noBooks": "Please help the community by adding your own books! It is very easy, you just need an account and a title.",
+  "libraryBorrow-noBooks-heading": "No Books found in this area!",
+  "libraryBorrow-noBooks-add-cta": "Login and add your book",
+  "libraryBorrow-searchBooks": "Search result",
+  "libraryBorrow-filterBy": "Filter by",
+  "libraryBorrow-searchTitleLabel": "You searched for",
+  "libraryBorrow-searchOtherBooks": "Other books available within your radius",
   "libraryBorrow-timeslot-title": "Available times to pick up. Please select at least 3 slots before continuing",
 
-  "sFooter-text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text"
+  "sFooter-text": "Finding a book to borrow has never been easier. Join our community members and start to read now from the comfort of your home."
 
 }

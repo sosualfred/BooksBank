@@ -4,15 +4,15 @@
       <h2 class="mt-8 mb-8 text-2xl font-bold">
         {{ $t('register_title') }}
       </h2>
-      <button class="w-full rounded-full py-3 border-2 mb-2" @click="handleClick('google')">
-        {{ $t('continue-with-google') }}
-      </button>
-      <button class="w-full rounded-full py-3 border-2 bg-gray-400 text-white mb-2" @click="handleClick('facebook')">
-        {{ $t('continue-with-facebook') }}
-      </button>
-      <button class="w-full rounded-full py-3 border-2 bg-gray-700 text-white" @click="handleClick('twitter')">
-        {{ $t('continue-with-twitter') }}
-      </button>
+      <p class="mt-4 mb-8">
+        {{ $t('register_description') }}
+      </p>
+      <LoginWithOAuth provider="google">
+        <img src="/assets/img/Google__G__Logo.png" class="inline mr-3" alt="google logo">{{ $t('continue-with-google') }}
+      </LoginWithOAuth>
+      <!-- <LoginWithOAuth provider="facebook">
+        <img src="/assets/img/facebook-logo.png" class="inline mr-3" alt="facebook logo">{{ $t('continue-with-facebook') }}
+      </LoginWithOAuth> -->
     </div>
     <div class="flex my-8">
       <span class="border-b-2 flex-grow mb-3" />
@@ -26,7 +26,11 @@
 </template>
 
 <script>
+import LoginWithOAuth from '~/components/sections/LoginWithOAuth'
 export default {
+  components: {
+    LoginWithOAuth
+  },
   methods: {
     handleClick (type) {
       this.$emit('click', type)

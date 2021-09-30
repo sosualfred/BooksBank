@@ -1,3 +1,4 @@
+/.idea
 /vendor/
 node_modules/
 npm-debug.log
@@ -20,6 +21,7 @@ public_html/hot
 
 storage/*.key
 .env
+.env.production
 Homestead.yaml
 Homestead.json
 /.vagrant
@@ -27,3 +29,11 @@ Homestead.json
 
 phpunit.dusk.xml
 *.code-workspace
+/.history
+
+# deployer
+.build
+hosts.yaml
+
+# MISC
+.DS_Store

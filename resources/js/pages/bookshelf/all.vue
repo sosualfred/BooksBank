@@ -1,8 +1,10 @@
 <template>
   <div class="mt-14">
-    <h3 class="font-sans text-2xl font-bold mb-6">Their books</h3>
+    <h3 class="font-sans text-2xl font-bold mb-6">
+      {{ $t('bookshelfAll-BooksYouAreReading') }}
+    </h3>
     <div class="grid grid-cols-4 gap-6">
-      <div v-for="(item, index) in borrowed" :key="index">
+      <div v-for="(item, index) in borrowedWithDetails" :key="index">
         <img :src="item.book.thumbnail" class="card-img-top" :alt="item.book.title">
         <div class="card-body">
           <h5 class="card-title">
@@ -14,9 +16,11 @@
         </div>
       </div>
     </div>
-    <h3 class="font-sans text-2xl font-bold mt-10 mb-6">Your books</h3>
+    <h3 class="font-sans text-2xl font-bold mt-10 mb-6">
+      {{ $t('bookshelfAll-BookYouOwn') }}
+    </h3>
     <div class="grid grid-cols-4 gap-6">
-      <div v-for="(item, index) in lent" :key="index">
+      <div v-for="(item, index) in items" :key="index">
         <img :src="item.book.thumbnail" class="card-img-top" :alt="item.book.title">
         <div class="card-body">
           <h5 class="card-title">
@@ -26,6 +30,9 @@
             ISBN: {{ item.book.ISBN }}
           </p>
         </div>
+        <Button :disabled="item.ledge.length > 0" theme="secondary" @click="deleteBookshelfItem(item.id)">
+          Remove
+        </Button>
       </div>
     </div>
   </div>
@@ -36,19 +43,27 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'All',
+  metaInfo () {
+    return { title: this.$t('bookshelfAll-title') }
+  },
   data () {
     return {
     }
   },
   computed: {
-    ...mapGetters('ledge', ['borrowed', 'lent'])
+    ...mapGetters('ledge', ['borrowedWithDetails']),
+    ...mapGetters('bookshelf', ['items'])
   },
   mounted () {
-    this.getAll()
+    this.getAllLedge()
+    this.getAllBookshelf()
   },
   methods: {
     ...mapActions({
-      getAll: 'ledge/getAll'
+      getAllLedge: 'ledge/getAll',
+      getAllBookshelf: 'bookshelf/getAll',
+      deleteBookshelfItem: 'bookshelf/delete'
+
     })
   }
 }

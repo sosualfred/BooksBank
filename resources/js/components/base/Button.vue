@@ -1,12 +1,12 @@
 <template>
-  <div :class="themeClass" @click="$emit('click')">
+  <div :class="themeClass" role="button" @click="handleClick">
     <slot />
   </div>
 </template>
 
 <script>
-const themes = ['cta', 'primary', 'secondary', 'square']
-const colours = ['primary', 'secondary']
+const themes = ['cta', 'primary', 'secondary', 'square', 'icon']
+const colours = ['primary', 'secondary', 'cta']
 
 export default {
   name: 'Button',
@@ -21,11 +21,25 @@ export default {
       type: String,
       default: 'primary',
       validator: value => colours.includes(value)
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   computed: {
     themeClass () {
-      return `button button-${this.theme} color-${this.color}`
+      let classes = `button button-${this.theme} color-${this.color}`
+      if (this.disabled) classes += ' button-disabled'
+
+      return classes
+    }
+  },
+  methods: {
+    handleClick () {
+      if (this.disabled) return
+      this.$emit('click')
     }
   }
 }
@@ -84,9 +98,15 @@ export default {
 }
 .button-secondary{
   min-width: 112px;
-  height: 44px;
+  height: 40px;
   padding: 6px 12px 8.8px 10px;
   border-radius: 22.4px;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: center;
   &.color-cta{
     border: solid 1.6px var(--primary-1);
   }
@@ -117,5 +137,23 @@ export default {
     background-color: var(--outline-2);
     color: white;
   }
+}
+.button-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--img-holder);
+  color: var(--body-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.9;
+  &:hover{
+    opacity:1;
+  }
+}
+.button-disabled{
+  cursor:not-allowed;
+  background-color: var(--secondary-4) !important;
 }
 </style>

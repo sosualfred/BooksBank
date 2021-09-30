@@ -37,36 +37,40 @@ class Book extends Model
 
     public static function add($item, $bookshelf_id)
     {
-        $book = Book::firstOrCreate([
-            'title' => $item->title,
-            'ISBN' => $item->ISBN,
-        ],
-        [
-            'description' => $item->description,
-            'thumbnail' => $item->thumbnail,
+        $book = Book::query()->firstOrCreate([
+            'title' => $item['title'],
+            'ISBN' => $item['ISBN'],
+        ], [
+            'description' => $item['description'],
+            'thumbnail' => $item['thumbnail'],
         ]);
 
-        if (is_array($item->categories) && count($item->categories) > 0)
+        if (is_array($item['categories']) && count($item['categories']) > 0)
         {
-            foreach ($item->categories as $key => $value) {
-                $book->categories()->firstOrCreate([
+            foreach ($item['categories'] as $key => $value) {
+                $book->categories()->updateOrCreate([
+                    'name' => $value
+                ],[
                     'name' => $value
                 ]);
             }
         }
 
-        if (is_array($item->authors) && count($item->authors) > 0)
+        if (is_array($item['authors']) && count($item['authors']) > 0)
         {
-            foreach ($item->authors as $key => $value) {
-                $book->authors()->firstOrCreate([
+            foreach ($item['authors'] as $key => $value) {
+                $book->authors()->updateOrCreate([
+                    'name' => $value
+                ],[
                     'name' => $value
                 ]);
             }
         }
 
         $book->bookshelf_item()->create([
-            'condition' => $item->condition,
-            'status' => $item->status,
+            'condition' => $item['condition'],
+            'status' => $item['status'],
+            'type' => $item['type'],
             'bookshelf_id' => $bookshelf_id,
             'book_id' => $book->id
         ]);

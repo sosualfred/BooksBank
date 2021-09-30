@@ -1,9 +1,16 @@
 function page (path) {
-  return () => import(/* webpackChunkName: '' */ `~/pages/${path}`).then(m => m.default || m)
+  return () => import(/* webpackChunkName: '' */ `~/pages/${path}`)
 }
 
 export default [
   { path: '/', name: 'welcome', component: page('welcome.vue') },
+
+  //Static pages
+  { path: '/privacy', name: 'privacy', component: page('privacy.vue') },
+  { path: '/terms', name: 'terms', component: page('terms.vue') },
+  { path: '/safe', name: 'safe', component: page('safe.vue') },
+  { path: '/about', name: 'about', component: page('about.vue') },
+  { path: '/faq', name: 'faq', component: page('faq.vue') },
 
   //Registration Process
   { path: '/login', name: 'login', component: page('auth/login.vue') },
@@ -37,7 +44,7 @@ export default [
       { path: 'settings', name: 'bookshelf.settings', component: page('bookshelf/settings.vue') },
       { path: 'all', name: 'bookshelf.all', component: page('bookshelf/all.vue') },
       { path: 'requested', name: 'bookshelf.requested', component: page('bookshelf/requested.vue') },
-      { path: 'info', name: 'bookshelf.info', component: page('bookshelf/info.vue') },
+      { path: 'info', name: 'bookshelf.info', component: page('bookshelf/info.vue'), alias: ['info/incoming', 'info/outgoing', 'info/borrowed', 'info/loaned'] },
     ] },
 
   { path: '*', component: page('errors/404.vue') }

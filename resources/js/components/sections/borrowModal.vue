@@ -31,17 +31,21 @@
           <h2>You are borrowing:</h2>
           <p class="font-semibold">{{ selectedBook.book.title }}</p>
           <hr>
-          <p>
-            <fa icon="map-marker-alt" />{{ selectedBook.bookshelf.city}}
+          <p class="font-semibold">
+            <fa icon="map-marker-alt" class="mr-1" />{{ selectedBook.bookshelf.city}}, {{ selectedBook.bookshelf.postcode}}
           </p>
+          <sub>The full address will be received by email on approval</sub>
           <hr>
           <h2>Collection date:</h2>
           <p class="font-semibold">{{ selectedDate }}</p>
           <h2>Collection time:</h2>
           <p class="font-semibold">{{ times[timeSlot] }}</p>
+          <!-- We just show the return date if the book is of type borrow -->
           <hr>
-          <h2>Book return date:</h2>
-          <p class="font-semibold">{{ returnDate.toFormat('yyyy-LL-dd') }}</p>
+          <template v-if="selectedBook.type === 0">
+            <h2>Book return date:</h2>
+            <p class="font-semibold">{{ returnDate.toFormat('yyyy-LL-dd') }}</p>
+          </template>
           <Button :disabled="submitDisabled" @click="onSendRequest">
             Send Request
           </Button>
@@ -54,8 +58,10 @@
 <script>
 import { mapActions } from 'vuex'
 import { DateTime } from 'luxon'
+import Swal from 'sweetalert2'
 
 export default {
+  middleware: 'auth',
   props: {
     show: {
       type: Boolean,
@@ -82,16 +88,18 @@ export default {
       return { weekdays: this.disabledDays }
     },
     submitDisabled () {
-      const dateSelected = !!this.DaySlot
-      const timeSelected = !!this.timeSlot
+      const dateSelected = this.DaySlot === null
+      const timeSelected = this.timeSlot === null
 
-      return !dateSelected || !timeSelected
+      return dateSelected || timeSelected
     },
     disabledDays () {
       const weekDays = [ 1, 2, 3, 4, 5, 6, 7 ]
       return weekDays.filter(day => {
         // We just return the value that are NOT included in the bookshelf
-        return !this.selectedBook.bookshelf.opening_days.includes(day)
+        // we also remove 1 to the weekDay value, as the calendar plugin starts from 1 and the value saved start from 0
+        const currentDay = day - 1
+        return !this.selectedBook.bookshelf.opening_days.includes(currentDay)
       })
     }
   },
@@ -114,8 +122,18 @@ export default {
         pickup_date: DateTime.fromFormat(this.selectedDate, 'cccc, d LLLL').set({ hour: timeslotHour }).toFormat('yyyy-LL-dd T'),
         return_date: this.returnDate.toFormat('yyyy-LL-dd T')
       }
-      await this.request(payload)
-      this.$emit('close')
+
+      try {
+        await this.request(payload)
+        this.$emit('close')
+        Swal.fire({
+          type: 'success',
+          title: 'Good Job!',
+          text: 'Your request has been sent!'
+        })
+      } catch (error) {
+        this.$emit('close')
+      }
     }
   }
 }
